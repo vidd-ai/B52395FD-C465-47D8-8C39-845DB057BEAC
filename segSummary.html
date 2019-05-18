@@ -152,11 +152,7 @@ function click(d) {
   	//url = d.location+ "?fn=" + d.name + "&u=" + user + "&c=File";
   	//window.open(encodeURI(url));
   	url = "viewer.html?v=" + d.location+ "&fn=" + d.name + "&u=" + user + "&c=File";
-  	//window.open(encodeURI(url));
-  	var w = window.open(encodeURI(url));
-        w.onload=function() {
-          w.document.title = "Vidd.ai segment map - " + fn;
-        };
+  	window.open(encodeURI(url));
   }
   if (d.children) {
     d._children = d.children;

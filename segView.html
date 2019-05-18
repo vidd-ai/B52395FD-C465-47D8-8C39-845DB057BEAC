@@ -82,7 +82,7 @@ function getUrlVars() {
 var demo = 'no';
 var fn = getUrlVars()['fn'];
 var user = getUrlVars()['u'];
-var select_str = '';
+var select_str = '# mpv EDL v0';
 demo = getUrlVars()['d'];
 document.title = "Vidd.ai segment map - " + fn;
 
@@ -362,7 +362,8 @@ function update(filter, in_graph) {
                   return;
                 }
                 $.each(data["all"]["nodes"], function (key, val) {
-		  all_nodes[key] = { "atom": key, "sec_start" : sec_start, "sec_len":  val["clip_len"] };
+		  //all_nodes[key] = { "atom": key, "sec_start" : val["sec_start"], "sec_len": val["sec_len"] };
+		  all_nodes[key] = { "atom": key, "sec_start" : val.hasOwnProperty("sec_start")?val["sec_start"]:0, "sec_len": val.hasOwnProperty("sec_len")?val["sec_len"]:0 };
                 });
             for (var i = 0; i < nodes.length; i++) {
                 //var da = x.datum(function (d) { return d.atom; });
@@ -376,7 +377,7 @@ function update(filter, in_graph) {
 	    a.href = "data:text/plain;charset=UTF-8," + select_str;
 	    a.download = fn + '.edl';
 	    a.click(); // fire click event
-	    select_str = ''; // reset 
+	    select_str = '# mpv EDL v0'; // reset 
 
 	    // save selected on server
 	    var surl = 'http://stream.vidd.ai/receiveSelected.php?u=' + user + '&fn=' + fn;
