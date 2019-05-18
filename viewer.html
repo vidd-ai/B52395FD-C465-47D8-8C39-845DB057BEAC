@@ -37,7 +37,7 @@ var c = getUrlVars()['c'];
     title = title + ' category map';
   }
   if (v.match(/segView/g)) {
-    title += ' segment map for ' + fn;
+    title = title + ' segment map for ' + fn;
   }
   document.title = title;
   if (fn) {
