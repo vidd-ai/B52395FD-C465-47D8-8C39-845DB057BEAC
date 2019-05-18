@@ -82,7 +82,7 @@ function getUrlVars() {
 var demo = 'no';
 var fn = getUrlVars()['fn'];
 var user = getUrlVars()['u'];
-var select_str = '# mpv EDL v0';
+var select_str = '# mpv EDL v0;';  // as required by EDL file syntax as first line, may not need dangling ;
 demo = getUrlVars()['d'];
 document.title = "Vidd.ai segment map - " + fn;
 
@@ -354,7 +354,6 @@ function update(filter, in_graph) {
 
 	    var json_fn = 'output/' + user + '/' + fn + '/d3.json';
             var all_nodes = [];
-	    var sec_start = 0;	// starting second
             $.getJSON(json_fn, function (data) {
                 var input_files = data["all"]["nodes"];
                 if (input_files.length == 0) {
@@ -369,19 +368,20 @@ function update(filter, in_graph) {
                 //var da = x.datum(function (d) { return d.atom; });
 
                 ids[i] = nodes[i].atom;
-		ids2[i] = { "atom": nodes[i].atom, "sec_start": sec_start, "sec_length": all_nodes[nodes[i].atom].sec_len };
+		ids2[i] = {"atom": nodes[i].atom, "sec_start": all_nodes[nodes[i].atom].sec_start, "sec_end": all_nodes[nodes[i].atom].sec_end, "sec_len": all_nodes[nodes[i].atom].sec_len};
 		select_str += '\n' + fn + ',' + all_nodes[nodes[i].atom].sec_start.toString() + ',' + all_nodes[nodes[i].atom].sec_len.toString() + ';';
             }
 
+	    //console.log('select_str', select_str);
 	    var a = document.getElementById('download_a');
-	    a.href = "data:text/plain;charset=UTF-8," + select_str;
+	    a.href = "data:text/plain;charset=UTF-8," + encodeURIComponent(select_str); // nb: must encode URI or won't save properly
+	    //console.log('a.href:', a.href);
 	    a.download = fn + '.edl';
 	    a.click(); // fire click event
-	    select_str = '# mpv EDL v0'; // reset 
+	    select_str = '# mpv EDL v0;'; // reset 
 
 	    // save selected on server
 	    var surl = 'http://stream.vidd.ai/receiveSelected.php?u=' + user + '&fn=' + fn;
-	    console.log('select_str', select_str);
 	    console.log('ids2', ids2);
 
             $.ajax({
