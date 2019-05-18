@@ -29,6 +29,24 @@ var c = getUrlVars()['c'];
 <script>
   var a = document.getElementById('iframe_a');
   var full_url = v + "?u=" + user;
+  switch(v) {
+  case (v.match(/segSummary/g):
+    document.title('Vidd.ai file map');
+    break;
+  case (v.match(/catSummary/g):
+    document.title('Vidd.ai category map');
+    break;
+  case (v.match(/segView/g):
+    document.title('Vidd.ai segment map - ' + fn);
+    break;
+  default:
+    document.title('Vidd.ai map');
+  } 
+/*
+  if (v.match(/segSummary/g) {
+    document.title('Vidd.ai file map');
+  }
+*/
   if (fn) {
     full_url += "&fn=" + fn;
   }
