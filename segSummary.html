@@ -84,6 +84,7 @@ var link_distance = 80,
 
 width = (link_distance * children_level) * 2 + padding; // graph radius + padding
 height = width;
+width += padding; // add more
 //console.log('width:',width);
 
 var force = d3.layout.force()

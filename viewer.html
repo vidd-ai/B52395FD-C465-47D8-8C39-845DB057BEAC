@@ -29,12 +29,12 @@ var c = getUrlVars()['c'];
 <script>
   var a = document.getElementById('iframe_a');
   var full_url = v + "?u=" + user;
-  var title = 'Vidd.ai';
-  if (v.match(/segSummary/g)) {
-    title += ' file map';
+  var title = 'your Vidd.ai';
+  if (c.match(/file/i)) {
+    title = title + ' file map';
   }
-  if (v.match(/catSummary/g)) {
-    title += ' category map';
+  if (c.match(/cat/i)) {
+    title = title + ' category map';
   }
   if (v.match(/segView/g)) {
     title += ' segment map for ' + fn;
