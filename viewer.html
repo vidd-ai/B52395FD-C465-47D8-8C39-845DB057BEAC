@@ -30,13 +30,13 @@ var c = getUrlVars()['c'];
   var a = document.getElementById('iframe_a');
   var full_url = v + "?u=" + user;
   switch(v) {
-  case (v.match(/segSummary/g):
+  case (v.match(/segSummary/g)):
     document.title('Vidd.ai file map');
     break;
-  case (v.match(/catSummary/g):
+  case (v.match(/catSummary/g)):
     document.title('Vidd.ai category map');
     break;
-  case (v.match(/segView/g):
+  case (v.match(/segView/g)):
     document.title('Vidd.ai segment map - ' + fn);
     break;
   default:
