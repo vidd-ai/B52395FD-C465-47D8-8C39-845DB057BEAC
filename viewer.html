@@ -31,13 +31,13 @@ var c = getUrlVars()['c'];
   var full_url = v + "?u=" + user;
   switch(v) {
   case (v.match(/segSummary/g)):
-    document.title('Vidd.ai file map');
+    document.title = 'Vidd.ai file map';
     break;
   case (v.match(/catSummary/g)):
-    document.title('Vidd.ai category map');
+    document.title = 'Vidd.ai category map';
     break;
   case (v.match(/segView/g)):
-    document.title('Vidd.ai segment map - ' + fn);
+    document.title = 'Vidd.ai segment map - ' + fn;
     break;
   default:
     document.title('Vidd.ai map');
