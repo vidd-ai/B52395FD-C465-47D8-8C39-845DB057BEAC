@@ -325,9 +325,11 @@ function update(filter, in_graph) {
         d3.select('#Selected').on('click', function () {
            // convert select_set to a graph D3 recognizes so it can be redrawn on svg
            var x = [...select_set];
+	   selected_graph["nodes"] = [];
 	   for (var i = 0; i < x.length; i++) {
                 selected_graph["nodes"].push(all_nodes[x[i]]);
 	   }
+	   //console.log('selected_graph:',selected_graph["nodes"]);
            update('selected', selected_graph);
         });
 
